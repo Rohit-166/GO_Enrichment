@@ -16,4 +16,33 @@ You will need the following datasets to do the project.
 - [Human genome](https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/), search for `hg38.fa.gz` and download
 
 - Dreg from [EMBOSS](https://anaconda.org/bioconda/emboss)
- 
+
+- [clusterProfiler](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) Bioconductor Package
+
+- [bedtools](https://anaconda.org/channels/bioconda/packages/bedtools/overview) 
+
+## Environment setup
+
+If you have a Windows system, install Windows Subsystem for Linux, WSL. It will give you direct access to Linux system. Students with either a Linux or MacOS system will have easy time setting up the environment to execute the project. 
+
+Setup [Miniforge](https://github.com/conda-forge/miniforge), and create a virtual environment with the following command:
+
+```
+mamba create -n go_enrichment python=3.12 
+```
+
+Once the above run successfully, you can do the following. 
+
+```
+mamba activate go_enrichment
+```
+
+```
+mamba install bioconda::emboss
+```
+
+## Target sequences to search in the promoter region
+
+As explained in the class, there about 1700 Transcription Factors in humans categorized in different families. You can know more about them [here](https://www.sciencedirect.com/science/article/pii/S0092867418301065) if you are interested. For the assignment, we will have one example sequence which is called cAMP Response Element (CRE) that you will search in the promoter region of all the genes. Genes with this element will then be fed to clusterProfiler to get the Gene Enrichment Plot. The CRE sequence is `TGACGTCA`.
+
+
