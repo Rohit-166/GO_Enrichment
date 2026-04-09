@@ -43,6 +43,38 @@ mamba install bioconda::emboss
 
 ## Target sequences to search in the promoter region
 
-As explained in the class, there about 1700 Transcription Factors in humans categorized in different families. You can know more about them [here](https://www.sciencedirect.com/science/article/pii/S0092867418301065) if you are interested. For the assignment, we will have one example sequence which is called cAMP Response Element (CRE) that you will search in the promoter region of all the genes. Genes with this element will then be fed to clusterProfiler to get the Gene Enrichment Plot. The CRE sequence is `TGACGTCA`.
+As explained in the class, there about 1700 Transcription Factors in humans categorized in different families. You can know more about them [here](https://www.sciencedirect.com/science/article/pii/S0092867418301065) if you are interested. For the assignment, we will have one example sequence "GCGC..GCGC" (the dot represents any nucleotide). It is a recognition sequence for NRF1 Transcription Factor, a well known factor for regulating genes for Mitochondria Biogenesis, and a host of other biological functions. We are going to explore TSS upstream sequences and perform gene enrichment analysis. 
 
+I hope you all have downloaded the human genome, and also have a working version of WSL/Linux/MacOS. Make sure the data is accessible in WSL (not in powershell). 
+
+### Step 1
+
+Convert human gene annotation file (`human_gene_annotation.tsv.gz`) into a bed file. Here, I am sharing a few lines of the bed file.
+
+```
+chr1    11869   11870   chr1@11869-11870|DDX11L2        .       +
+chr1    12010   12011   chr1@12010-12011|DDX11L1        .       +
+chr1    17436   17437   chr1@17436-17437|MIR6859-1      .       -
+chr1    24886   24887   chr1@24886-24887|WASH7P .       -
+```
+
+Column description are below:
+
+- Col1: Chromosome
+
+- Col2: Transcription Start Site (TSS) 
+
+- Col3: Col2 + 1
+
+- Col4: Col1@Col2-Col3|<gene name>
+
+- Col5: "." (place holder for score)
+
+- Col6: Strand (+/-) 
+
+
+Once you have the bed file - your goal is to extend the coordinates (Col2 or Col3) by 500 bases in a strand aware manner. Install `bedtools` and look at the `bedtools slop` command
+
+
+In the `go_enrichment` environment, install `bedtools`. 
 
